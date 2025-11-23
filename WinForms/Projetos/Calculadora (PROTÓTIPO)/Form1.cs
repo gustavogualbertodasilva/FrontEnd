@@ -4,15 +4,40 @@ namespace Calculadora;
 public partial class Form1 : Form
 {
     public System.Drawing.Color GridColor = System.Drawing.Color.FromArgb(0, 0, 50);
+    private System.Windows.Forms.Timer refreshTimer;
+
     public Form1()
     {
         InitializeComponent();
-        this.Text = "Calculator";
+        refreshTimer = new System.Windows.Forms.Timer();
+        refreshTimer.Interval = 5000;
+        refreshTimer.Tick += RefreshTimer_Tick;
+        refreshTimer.Start();
+        
         this.Size = new System.Drawing.Size(300, 465);
         this.FormBorderStyle = FormBorderStyle.FixedSingle;
         this.MaximizeBox = false;
         this.MinimizeBox = false;
         this.BackColor = Color.FromArgb(255, 255, 255);
+        this.Text = "Calculator";
+        this.StartPosition = FormStartPosition.Manual;
+        int screenWidth = Screen.PrimaryScreen.Bounds.Width;
+        int x = screenWidth - this.Width;
+        int y = 0;
+        this.Location = new Point(x + 9, y);
+        InitializeCustomComponents();
+
+
+    }
+    
+    
+    public void InitializeCustomComponents()
+    {
+        for (int i = Controls.Count - 1; i >= 0; i--)
+        {
+            if (Controls[i] is Label || Controls[i] is Button)
+                Controls.RemoveAt(i);
+        }
 
 
         Label Display = new Label()
@@ -122,13 +147,25 @@ public partial class Form1 : Form
         Controls.Add(GradeHorizontal6);
 
 
-
-        /*Button Reverse = new Button()
+        Button ReverseButton = new Button()
         {
-            TextAlign = System.Drawing.ContentAlignment.MiddleRight,
+            Font = new Font("Arial", 10, FontStyle.Regular),
+            TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
             Text = "+/-",
-            BackColor = System.Drawing.Color.FromArgb(0,0,0),
+            BackColor = System.Drawing.Color.FromArgb(55,55,120),
+            Width = 69,
+            Height = 73,
+            Top = 52,
+            Left = 2,
+            FlatStyle = FlatStyle.Flat
         };
-        */
+        Controls.Add(ReverseButton);
+        ReverseButton.FlatAppearance.BorderSize = 0;
+        ReverseButton.Font = new Font("Arial", 10, FontStyle.Regular);
+    }
+
+    private void RefreshTimer_Tick(object? sender, EventArgs e)
+    {
+        InitializeCustomComponents();
     }
 }

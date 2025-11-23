@@ -1,0 +1,30 @@
+body {
+    background:
+    linear-gradient(to left, rgb(77, 217, 236) -120%, transparent),
+    linear-gradient(to bottom, rgb(3, 0, 209), rgb(189, 9, 234));
+    background-attachment: fixed;
+}
+
+#sombra1
+{
+    position: absolute;
+    margin-top: -200px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 200px;
+    width: 270px;
+    box-shadow: 0px 0px 150px 50px rgb(255, 255, 47);
+}
+
+#sombra2
+{
+    position: absolute;
+    margin-top: 200px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 150px;
+    width: 270px;
+    box-shadow: 0px 0px 150px 50px rgb(255, 255, 47);
+}
