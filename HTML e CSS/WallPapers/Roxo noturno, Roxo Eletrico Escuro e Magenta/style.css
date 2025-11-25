@@ -1,0 +1,39 @@
+body
+{
+    background: 
+    linear-gradient(to left, rgb(2, 66, 227) -80%, transparent),
+    linear-gradient(to bottom, rgb(42, 0, 76), rgb(87, 0, 113));
+    background-attachment: fixed;
+}
+
+#LightTopRight
+{
+    height: 1px;
+    width: 1px;
+    margin-left: 785px;
+    margin-top: 555px;
+    box-shadow: 0px 0px 330px 300px rgb(255, 3, 3);
+}
+
+#Sombra1
+{
+    position: absolute;
+    left: 50%;
+    top: 7%;
+    transform: translate(-50%, 0);
+    width: 420px;
+    height: 297px;
+    box-shadow: 0px 0px 100px 20px rgb(209, 0, 255);
+}
+
+#Sombra2
+{
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, 0);
+    width: 440px;
+    height: 240px;
+    box-shadow: 0px 0px 100px 20px rgb(209, 0, 255);
+}
+
