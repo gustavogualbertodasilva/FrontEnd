@@ -4,14 +4,13 @@ namespace Calculadora;
 public partial class Form1 : Form
 {
     private System.Windows.Forms.Timer refreshTimer;
+    public string DisplayText = "0";
+    public Label Display;
+    
 
     public Form1()
     {
         InitializeComponent();
-        refreshTimer = new System.Windows.Forms.Timer();
-        refreshTimer.Interval = 5000;
-        refreshTimer.Tick += RefreshTimer_Tick;
-        refreshTimer.Start();
         
         this.Size = new System.Drawing.Size(300, 465);
         this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -32,7 +31,7 @@ public partial class Form1 : Form
     
     public void InitializeCustomComponents()
     {
-        string DisplayText = "28 x 19";
+        
         System.Drawing.Color GridColor = System.Drawing.Color.FromArgb(0, 0, 30);
         System.Drawing.Color ButtonColor1 = System.Drawing.Color.FromArgb(10,55,120);
         System.Drawing.Color ButtonColor2 = System.Drawing.Color.FromArgb(55,155,175);
@@ -45,7 +44,7 @@ public partial class Form1 : Form
         }
 
 
-        Label Display = new Label()
+        Display = new Label()
         {
             Text = DisplayText,
             Font = new Font("Arial", 16, FontStyle.Regular),
@@ -56,7 +55,6 @@ public partial class Form1 : Form
             BackColor = Color.FromArgb(50, 95, 255)
         };
         Controls.Add(Display);
-
 
         InicializeGrid(GridColor);
 
@@ -73,8 +71,8 @@ public partial class Form1 : Form
             Left = 2,
             FlatStyle = FlatStyle.Flat
         };
-        Controls.Add(ReverseButton);
         ReverseButton.FlatAppearance.BorderSize = 0;
+        Controls.Add(ReverseButton);
 
         Button DivisionButton = new Button()
         {
@@ -240,6 +238,7 @@ public partial class Form1 : Form
         };
         Button1.FlatAppearance.BorderSize = 0;
         Controls.Add(Button1);
+        
 
         Button Button2 = new Button()
         {
@@ -330,13 +329,78 @@ public partial class Form1 : Form
         };
         OkButton.FlatAppearance.BorderSize = 0;
         Controls.Add(OkButton);
+
+        Button1.Click += (s, e) => Click(1);
+        Button2.Click += (s, e) => Click(2);
+        Button3.Click += (s, e) => Click(3);
+        Button4.Click += (s, e) => Click(4);
+        Button5.Click += (s, e) => Click(5);
+        Button6.Click += (s, e) => Click(6);
+        Button7.Click += (s, e) => Click(7);
+        Button8.Click += (s, e) => Click(8);
+        Button9.Click += (s, e) => Click(9);
+        Button0.Click += (s, e) => Click(0);
+        AllClearButton.Click += (s, e) => Click(10);
     }
 
-    private void RefreshTimer_Tick(object? sender, EventArgs e)
+    public void Click(int v)
     {
-        InitializeCustomComponents();
-    }
+        if (v >= 1 && v < 10 && DisplayText.Length == 1 && DisplayText[0] == '0')
+        {
+            DisplayText = "";
+        }
+        switch (v)
+        {
+            case 1:
+                DisplayText += "1";
+                Display.Text = DisplayText;
+                break;
+            
+            case 2:
+                DisplayText += "2";
+                Display.Text = DisplayText;
+                break;
+            case 3:
+                DisplayText += "3";
+                Display.Text = DisplayText;
+                break;
+            case 4:
+                DisplayText += "4";
+                Display.Text = DisplayText;
+                break;
+            case 5:
+                DisplayText += "5";
+                Display.Text = DisplayText;
+                break;
+            case 6:
+                DisplayText += "6";
+                Display.Text = DisplayText;
+                break;
+            case 7:
+                DisplayText += "7";
+                Display.Text = DisplayText;
+                break;
+            case 8:
+                DisplayText += "8";
+                Display.Text = DisplayText;
+                break;
+            case 9:
+                DisplayText += "9";
+                Display.Text = DisplayText;
+                break;
+            case 0:
+                DisplayText += "0";
+                Display.Text = DisplayText;
+                break;
+            case 10:
+                DisplayText = "0";
+                Display.Text = DisplayText;
+                break;
+            
+            
 
+        }
+    }
     public void InicializeGrid(System.Drawing.Color GridColor)
     {
         Label GradeVertical1 = new Label()
