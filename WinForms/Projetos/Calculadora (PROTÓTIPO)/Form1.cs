@@ -3,7 +3,6 @@ namespace Calculadora;
 
 public partial class Form1 : Form
 {
-    private System.Windows.Forms.Timer refreshTimer;
     public string DisplayText = "0";
     public Label Display;
     
@@ -341,6 +340,11 @@ public partial class Form1 : Form
         Button9.Click += (s, e) => Click(9);
         Button0.Click += (s, e) => Click(0);
         AllClearButton.Click += (s, e) => Click(10);
+        SumButton.Click += (s, e) => Click(11);
+        SubButton.Click += (s, e) => Click(12);
+        MultButton.Click += (s, e) => Click(13);
+        DivisionButton.Click += (s, e) => Click(14);
+        OkButton.Click += (s, e) => Click(15);
     }
 
     public void Click(int v)
@@ -396,9 +400,46 @@ public partial class Form1 : Form
                 DisplayText = "0";
                 Display.Text = DisplayText;
                 break;
-            
-            
-
+            case 11:
+                
+                if(DisplayText[DisplayText.Length - 1] != ' ')
+                {
+                   DisplayText += " + ";
+                    Display.Text = DisplayText;
+                }
+                break;
+            case 12:
+                
+                if(DisplayText[DisplayText.Length - 1] != ' ')
+                {
+                   DisplayText += " - ";
+                    Display.Text = DisplayText;
+                }
+                break;
+            case 13:
+                
+                if(DisplayText[DisplayText.Length - 1] != ' ')
+                {
+                   DisplayText += " x ";
+                    Display.Text = DisplayText;
+                }
+                break;
+            case 14:
+                
+                if(DisplayText[DisplayText.Length - 1] != ' ')
+                {
+                   DisplayText += " ÷ ";
+                    Display.Text = DisplayText;
+                }
+                break;
+            case 15:
+                
+                if(DisplayText[DisplayText.Length - 1] != ' ')
+                {
+                   DisplayText = DisplayText.Remove(DisplayText.Length - 3);
+                   Calcular(DisplayText);
+                }
+                break;
         }
     }
     public void InicializeGrid(System.Drawing.Color GridColor)
@@ -504,5 +545,10 @@ public partial class Form1 : Form
             BackColor = GridColor
         };
         Controls.Add(GradeHorizontal7);
+    }
+
+    public void Calcular(string Formula)
+    {
+        
     }
 }
