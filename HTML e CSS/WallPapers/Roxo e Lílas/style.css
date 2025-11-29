@@ -1,0 +1,18 @@
+body
+{   z-index: 5;
+    background: linear-gradient(to left, rgb(1, 169, 215), rgb(132, 228, 141));
+}
+
+#Sombra1
+{
+    height: 1px;
+    width: 1px;
+    box-shadow: 270px 400px 230px 100px rgb(51, 4, 162);
+}
+
+#Sombra2
+{
+    height: 1px;
+    width: 1px;
+    box-shadow: 270px 50px 230px 100px rgb(51, 4, 162);
+}
