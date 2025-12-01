@@ -345,6 +345,7 @@ public partial class Form1 : Form
         MultButton.Click += (s, e) => Click(13);
         DivisionButton.Click += (s, e) => Click(14);
         OkButton.Click += (s, e) => Click(15);
+        ReverseButton.Click += (s, e) => Click(16);
     }
 
     public void Click(int v)
@@ -440,6 +441,37 @@ public partial class Form1 : Form
                    Calcular(DisplayText);
                 }
                 break;
+            case 16:
+                int FirstPosition = 0;
+                int LastPosition = 0;
+                if(DisplayText[DisplayText.Length - 1] != ' ')
+                {
+                    LastPosition = DisplayText.Length - 1;
+                }
+                for(int i = DisplayText.Length - 1; i > 0; i--)
+                {
+                    if(DisplayText[i] == ' ')
+                    {
+                        FirstPosition = i + 1;
+                        i = -9999;
+                        break;
+                    }
+
+    
+                }
+                if(DisplayText[DisplayText.Length - 1] != ' ')
+                {
+                    
+                    string DisplayTextAtt = DisplayText.Substring(0, DisplayText.Length - 1);
+                    DisplayText = DisplayTextAtt + x.ToString();
+                    int x = Convert.ToInt32(DisplayText.Substring(FirstPosition, LastPosition + 1- FirstPosition)) * -1;
+
+                    System.Windows.Forms.MessageBox.Show($"{FirstPosition} {LastPosition} = {DisplayText.Substring(FirstPosition, (LastPosition + 1- FirstPosition ))}");
+
+                }
+
+                break;
+            
         }
     }
     public void InicializeGrid(System.Drawing.Color GridColor)
