@@ -14,7 +14,7 @@ body
     border: 10px solid transparent;
     height: 1920px;
     width: 1080px;
-    background: linear-gradient(to right, rgb(212, 0, 205), rgb(0, 51, 255));
+    background: linear-gradient(to right, rgb(68, 3, 217), rgb(0, 15, 74));
 }
 
 p {
@@ -39,7 +39,7 @@ p {
     text-shadow: 0 0 200px #01ffc8a2, 0 0 00px #01ffc8a2, 0 0 1500px #01ffc8a2;
     margin-left: 260px;
     margin-bottom: 10px;
-    margin-top: -640px;
+    margin-top: -500px;
     letter-spacing: 8px;
     font-weight: 600;
     filter: drop-shadow(0 0 10px #00ff88);
@@ -47,9 +47,9 @@ p {
 
 #ima
 {   margin-left: -111px;
-    margin-top: -2000px;
+    margin-top: -2050px;
     width: 1300px;
-    height: 600px;
+    height: 730px;
     position: absolute;
 }
 

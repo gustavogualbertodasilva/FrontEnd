@@ -462,11 +462,11 @@ public partial class Form1 : Form
                 if(DisplayText[DisplayText.Length - 1] != ' ')
                 {
                     
-                    string DisplayTextAtt = DisplayText.Substring(0, DisplayText.Length - 1);
-                    DisplayText = DisplayTextAtt + x.ToString();
-                    int x = Convert.ToInt32(DisplayText.Substring(FirstPosition, LastPosition + 1- FirstPosition)) * -1;
-
-                    System.Windows.Forms.MessageBox.Show($"{FirstPosition} {LastPosition} = {DisplayText.Substring(FirstPosition, (LastPosition + 1- FirstPosition ))}");
+                    string DisplayTextAtt = DisplayText.Substring(0, DisplayText.Length); //33
+                    int x = Convert.ToInt32(DisplayText.Substring(FirstPosition, LastPosition + 1 - FirstPosition)) * -1; //-33
+                    string DisplayTextAtt2 = DisplayTextAtt.Substring(0, FirstPosition);  
+                    DisplayText = DisplayTextAtt2 + x.ToString();
+                    Display.Text = DisplayText;
 
                 }
 
