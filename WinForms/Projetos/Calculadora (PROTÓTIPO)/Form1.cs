@@ -1,11 +1,14 @@
 using static System.Drawing.Color;
+using System.Data;
+using System.Globalization;
 namespace Calculadora;
 
 public partial class Form1 : Form
 {
     public string DisplayText = "0";
     public Label Display;
-    
+    private readonly CultureInfo culture = CultureInfo.InvariantCulture;
+    private readonly DataTable dt = new DataTable();
 
     public Form1()
     {
@@ -346,6 +349,7 @@ public partial class Form1 : Form
         DivisionButton.Click += (s, e) => Click(14);
         OkButton.Click += (s, e) => Click(15);
         ReverseButton.Click += (s, e) => Click(16);
+        CommaButton.Click += (s, e) => Click(17);
     }
 
     public void Click(int v)
@@ -360,7 +364,6 @@ public partial class Form1 : Form
                 DisplayText += "1";
                 Display.Text = DisplayText;
                 break;
-            
             case 2:
                 DisplayText += "2";
                 Display.Text = DisplayText;
@@ -394,8 +397,11 @@ public partial class Form1 : Form
                 Display.Text = DisplayText;
                 break;
             case 0:
-                DisplayText += "0";
-                Display.Text = DisplayText;
+                if(DisplayText[1] == ',' || DisplayText.Length > 1)
+                {
+                    DisplayText += "0";
+                    Display.Text = DisplayText;
+                }
                 break;
             case 10:
                 DisplayText = "0";
@@ -437,8 +443,7 @@ public partial class Form1 : Form
                 
                 if(DisplayText[DisplayText.Length - 1] != ' ')
                 {
-                   DisplayText = DisplayText.Remove(DisplayText.Length - 3);
-                   Calcular(DisplayText);
+                   Calculate(DisplayText);
                 }
                 break;
             case 16:
@@ -463,7 +468,7 @@ public partial class Form1 : Form
                 {
                     
                     string DisplayTextAtt = DisplayText.Substring(0, DisplayText.Length); //33
-                    int x = Convert.ToInt32(DisplayText.Substring(FirstPosition, LastPosition + 1 - FirstPosition)) * -1; //-33
+                    int x = Convert.ToInt16(DisplayText.Substring(FirstPosition, LastPosition + 1 - FirstPosition)) * -1; //-33
                     string DisplayTextAtt2 = DisplayTextAtt.Substring(0, FirstPosition);  
                     DisplayText = DisplayTextAtt2 + x.ToString();
                     Display.Text = DisplayText;
@@ -471,7 +476,25 @@ public partial class Form1 : Form
                 }
 
                 break;
-            
+            case 17:
+                if(DisplayText[DisplayText.Length - 1] != ' ' && DisplayText[DisplayText.Length - 1] != ',')
+                {
+                    for(int i = DisplayText.Length - 1; i >= 0; i--)
+                    {
+                        if(DisplayText[i] == ' ' || i == 0)
+                        {
+                            DisplayText += ',';
+                            Display.Text = DisplayText;
+                            i = 0;
+                        }
+                        else if(DisplayText[i] == ',')
+                        {
+                            i = 0;
+                        }
+                    }
+
+                }
+                break;
         }
     }
     public void InicializeGrid(System.Drawing.Color GridColor)
@@ -579,8 +602,13 @@ public partial class Form1 : Form
         Controls.Add(GradeHorizontal7);
     }
 
-    public void Calcular(string Formula)
+    public void Calculate(string Formula)
     {
-        
+        Formula = Formula.Replace(",", ".");
+        Formula = Formula.Replace("x", "*");
+        Formula = Formula.Replace("÷", "/");
+        var result = new DataTable().Compute(Formula, null);
+        DisplayText = result.ToString();
+        Display.Text = DisplayText;
     }
 }
